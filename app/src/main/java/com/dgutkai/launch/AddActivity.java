@@ -3,26 +3,22 @@ package com.dgutkai.launch;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.provider.Settings;
-import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
+
+import androidx.annotation.Nullable;
 
 import com.dgutkai.launch.adapter.ContactsAdapter;
 import com.dgutkai.launch.base.BaseActivity;
 import com.dgutkai.launch.contacts.ContactsInfo;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 /**
