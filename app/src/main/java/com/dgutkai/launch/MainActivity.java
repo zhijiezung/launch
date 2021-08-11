@@ -96,7 +96,6 @@ public class MainActivity extends BaseActivity {
                     }
                     startActivity(intent);
                 }
-
             }
         });
     }
@@ -109,13 +108,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
-
     }
 
     public void setupAction(View v) {
         Intent setupIntent = new Intent(this, SetupActivity.class);
         startActivity(setupIntent);
     }
-
-
 }
