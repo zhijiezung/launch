@@ -48,8 +48,7 @@ public class MyHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        String sql = "INSERT INTO " + TABLE_NAME + " (key, value) VALUES ('show', 9);";  // 指针时钟 widgetID=9
-
-        db.execSQL(sql);
+        /*String sql = "INSERT INTO " + TABLE_NAME + " (key, value) VALUES ('show', 9);";  // 指针时钟 widgetID=9
+        db.execSQL(sql);*/
     }
 }
