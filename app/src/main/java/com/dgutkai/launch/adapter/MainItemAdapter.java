@@ -21,9 +21,8 @@ import com.dgutkai.launch.contacts.ContactsInfo;
 import java.util.ArrayList;
 
 /**
- * Created by lin on 2017/8/21.
+ *
  */
-
 public class MainItemAdapter extends BaseAdapter {
 
     private ArrayList<ContactsInfo> listData;

@@ -1,36 +1,24 @@
 package com.dgutkai.launch;
 
 import android.Manifest;
-import android.app.ActionBar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.net.Uri;
-import android.os.Vibrator;
-import android.provider.CallLog;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.Vibrator;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
-import android.widget.SimpleAdapter;
 
 import com.dgutkai.launch.adapter.MainItemAdapter;
 import com.dgutkai.launch.base.BaseActivity;
 import com.dgutkai.launch.contacts.ContactsInfo;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Objects;
 
 public class MainActivity extends BaseActivity {
 
@@ -70,6 +58,7 @@ public class MainActivity extends BaseActivity {
         mGridView.setAdapter(gridviewAdapter);
 
         String widgetID = dbUtil.getValue("show");
+        Log.e("key[show]", "widgetID=" + widgetID);
         if (widgetID != null) {
             final FrameLayout fl = (FrameLayout) findViewById(R.id.timer_view);
 
