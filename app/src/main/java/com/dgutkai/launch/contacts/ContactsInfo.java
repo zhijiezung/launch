@@ -24,8 +24,10 @@ import java.io.InputStream;
 import java.util.Random;
 
 /**
+ * Created by lin on 2017/8/21.
  * 联系人模型类，这里将APP和联系人整合到该模型中。
  */
+
 public class ContactsInfo {
     private String name;
     private String number;

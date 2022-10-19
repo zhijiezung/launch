@@ -22,24 +22,25 @@ import com.dgutkai.launch.contacts.ContactsInfo;
 import java.util.ArrayList;
 
 /**
- *
+ * Created by lin on 2017/8/21.
  */
+
 public class MainItemAdapter extends BaseAdapter {
 
     private ArrayList<ContactsInfo> listData;
     private Context mContext;
     private LayoutInflater inflater;
 
-    public MainItemAdapter(Context context, ArrayList<ContactsInfo> data) {
+    public MainItemAdapter(Context context, ArrayList<ContactsInfo> data){
         this.inflater = LayoutInflater.from(context);
         this.mContext = context;
-        if (data == null) {
+        if (data == null){
             listData = new ArrayList<ContactsInfo>();
-        } else {
+        }else{
             listData = data;
         }
-    }
 
+    }
     @Override
     public int getCount() {
         return listData.size();
@@ -57,35 +58,36 @@ public class MainItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        final ViewHolder holder;
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.main_item, null);
 
+        final ViewHolder holder;
+        if (convertView == null)
+        {
+            convertView = inflater.inflate(R.layout.main_item, null);
             holder = new ViewHolder();
             holder.name = (TextView) convertView.findViewById(R.id.item_text);
             holder.icon = (ImageView) convertView.findViewById(R.id.item_icon);
             holder.flage = (TextView) convertView.findViewById(R.id.flage_text);
 
             convertView.setTag(holder);
-        } else {
+        } else
+        {
             holder = (ViewHolder) convertView.getTag();
         }
 
         String contact_name = listData.get(position).getName();
         Bitmap contact_icon = listData.get(position).getIcon(mContext);
         String number = listData.get(position).getNumber();
-
-        if (number != null && !"null".equals(number)) {
+        if (number != null && !"null".equals(number)){
             Log.e("Logs", contact_name + " " + number);
             int flage = readMissCall(number);
-            if (flage > 0) {
+            if (flage > 0){
                 holder.flage.setText(flage + "");
                 holder.flage.setVisibility(View.VISIBLE);
-            } else {
+            }else{
                 holder.flage.setText("0");
                 holder.flage.setVisibility(View.GONE);
             }
-        } else {
+        }else{
             holder.flage.setText("0");
             holder.flage.setVisibility(View.GONE);
         }
@@ -94,11 +96,10 @@ public class MainItemAdapter extends BaseAdapter {
 
         holder.icon.setImageBitmap(contact_icon);
         holder.name.setText(contact_name);
-
         return convertView;
     }
 
-    private class ViewHolder {
+    private class ViewHolder{
         TextView name;
         ImageView icon;
         TextView flage;
@@ -106,11 +107,12 @@ public class MainItemAdapter extends BaseAdapter {
 
     /**
      * 获取未接来电
-     *
      * @param number 电话号码
      * @return
      */
     private int readMissCall(String number) {
+
+
         int result = 0;
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.READ_CALL_LOG) != PackageManager.PERMISSION_GRANTED) {
             return 0;
@@ -120,6 +122,7 @@ public class MainItemAdapter extends BaseAdapter {
         Cursor cursor = mContext.getContentResolver().query(CallLog.Calls.CONTENT_URI,
                 null, " type=? and number=? and new=1",
                 new String[]{CallLog.Calls.MISSED_TYPE + "", number}, "date desc");
+
 
         if (cursor != null) {
             result = cursor.getCount();

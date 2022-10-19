@@ -7,12 +7,12 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
-import androidx.core.app.ActivityCompat;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.GridView;
+
+import androidx.core.app.ActivityCompat;
 
 import com.dgutkai.launch.adapter.MainItemAdapter;
 import com.dgutkai.launch.base.BaseActivity;
@@ -35,8 +35,9 @@ public class MainActivity extends BaseActivity {
         widgetcontrol = new APPWidgetControl(this);
         /*
          * 想设置震动大小可以通过改变pattern来设定，如果开启时间太短，震动效果可能感觉不到
-         */
+         * */
         vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+
     }
 
     @Override
@@ -56,9 +57,7 @@ public class MainActivity extends BaseActivity {
         gridviewAdapter = new MainItemAdapter(this, appData);
         mGridView.setAdapter(gridviewAdapter);
 
-        // TODO 添加 widget
         String widgetID = dbUtil.getValue("show");
-        Log.e("key[show]", "widgetID=" + widgetID);
         if (widgetID != null) {
             final FrameLayout fl = (FrameLayout) findViewById(R.id.timer_view);
 
@@ -75,7 +74,7 @@ public class MainActivity extends BaseActivity {
                 String number = appData.get(i).getNumber();
                 String sortkey = appData.get(i).getSortKey();
                 if ("null".equals(number) && "null".equals(sortkey)) {
-                    Intent resolveIntent = getPackageManager().getLaunchIntentForPackage(packageName);  // 这里的packname就是从上面得到的目标apk的包名
+                    Intent resolveIntent = getPackageManager().getLaunchIntentForPackage(packageName);// 这里的packname就是从上面得到的目标apk的包名
                     // 启动目标应用
                     startActivity(resolveIntent);
                 } else {
@@ -85,33 +84,26 @@ public class MainActivity extends BaseActivity {
                     }
                     startActivity(intent);
                 }
+
             }
         });
     }
 
-    /**
-     * 数据源
-     */
     private void initData() {
         appData.clear();
         appData.addAll(dbUtil.getContacts());
         gridviewAdapter.notifyDataSetChanged();
     }
 
-    /**
-     * 屏蔽返回按钮
-     */
     @Override
     public void onBackPressed() {
+
     }
 
-    /**
-     * 进入设置页面
-     *
-     * @param v
-     */
     public void setupAction(View v) {
         Intent setupIntent = new Intent(this, SetupActivity.class);
         startActivity(setupIntent);
     }
+
+
 }
